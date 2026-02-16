@@ -1,0 +1,22 @@
+[@@@sml.comment
+  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
+type nonrec unit = unit;;
+type nonrec exn = exn;;
+exception Bind = Bind;;
+exception Chr = Chr;;
+exception Div = Div;;
+exception Domain = Domain;;
+exception Fail = Fail;;
+exception Match = Match;;
+exception Overflow = Overflow;;
+exception Size = Size;;
+exception Span = Span;;
+exception Subscript = Subscript;;
+let exnName = ((use { b = "General.exnName"} ) : (exn -> string));;
+let exnMessage = exnName;;
+type nonrec order = order;;
+let ( ! ) { contents = v} = v;;
+let ( := ) = ( := );;
+let o f g a = (f ((g a)));;
+let before (a, _b) = a;;
+let ignore _a = ();;

@@ -1,0 +1,20 @@
+[@@@sml.comment
+  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
+type nonrec real = real;;
+let e = ((use { b = "Math.e"}  ()) : real);;
+let pi = ((use { b = "Math.pi"}  ()) : real);;
+let sqrt = ((use { b = "Math.sqrt"} ) : (real -> real));;
+let sin = ((use { b = "Math.sin"} ) : (real -> real));;
+let cos = ((use { b = "Math.cos"} ) : (real -> real));;
+let tan = ((use { b = "Math.tan"} ) : (real -> real));;
+let asin = ((use { b = "Math.asin"} ) : (real -> real));;
+let acos = ((use { b = "Math.acos"} ) : (real -> real));;
+let atan = ((use { b = "Math.atan"} ) : (real -> real));;
+let atan2 = ((use { b = "Math.atan2"} ) : (real * real -> real));;
+let exp = ((use { b = "Math.exp"} ) : (real -> real));;
+let pow = ((use { b = "Math.pow"} ) : (real * real -> real));;
+let ln = ((use { b = "Math.ln"} ) : (real -> real));;
+let log10 = ((use { b = "Math.log10"} ) : (real -> real));;
+let sinh = ((use { b = "Math.sinh"} ) : (real -> real));;
+let cosh = ((use { b = "Math.cosh"} ) : (real -> real));;
+let tanh = ((use { b = "Math.tanh"} ) : (real -> real));;
