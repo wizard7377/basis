@@ -1,7 +1,17 @@
 [@@@sml.comment
   {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
 type nonrec unit = unit;;
+type int = Int.int ;;
 type nonrec exn = exn;;
+type word = Word.word ;;
+type real = Real.real ;;
+type char = Char.char ;;
+type string = String.string ;;
+type substring = Substring.substring ;;
+type 'a array = 'a Array.array ;;
+type 'a vector = 'a Vector.vector ;;
+type nonrec 'a option = 'a Option.option ;;
+type nonrec 'a list = 'a List.list;;
 exception Bind = Bind;;
 exception Chr = Chr;;
 exception Div = Div;;
@@ -15,7 +25,7 @@ exception Subscript = Subscript;;
 let exnName = ((use { b = "General.exnName"} ) : (exn -> string));;
 let exnMessage = exnName;;
 type nonrec order = order;;
-let ( ! ) { contents = v} = v;;
+let ( ! ) { contents = v } = v;;
 let ( := ) = ( := );;
 let o f g a = (f ((g a)));;
 let before (a, _b) = a;;

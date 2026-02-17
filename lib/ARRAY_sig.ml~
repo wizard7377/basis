@@ -1,8 +1,7 @@
-open General
 [@@@sml.comment
   {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
 module type ARRAY = sig
-        type nonrec 'a array [@@deriving eq]
+    type nonrec 'a array [@@deriving eq]
                     [@@@sml.comment {|(*= 'a array*)|}]
                     type nonrec 'a vector = 'a Vector.vector
                     val maxLen : int

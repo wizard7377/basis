@@ -1,340 +1,91 @@
 [@@@sml.comment
   {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *\n * Notes:\n * - We only implement required structures (and their signatures).\n * - Modules commented out are not yet implemented.\n *)|}];;
-let use : (string -> unit) = fun _ -> ();;
-let _ =
-  begin
-    (use "infix.sml");
-    begin
-      (use "types.sml");
-      begin
-        (use "exceptions.sml");
-        begin
-          (use "GENERAL-sig.sml");
-          begin
-            (use "General.sml");
-            begin
-              (use "OPTION-sig.sml");
-              begin
-                (use "Option.sml");
-                begin
-                  (use "BOOL-sig.sml");
-                  begin
-                    (use "Bool.sml");
-                    begin
-                      (use "LIST-sig.sml");
-                      begin
-                        (use "List.sml");
-                        begin
-                          (use "LIST_PAIR-sig.sml");
-                          begin
-                            (use "ListPair.sml");
-                            begin
-                              (use "CHAR-sig.sml");
-                              begin
-                                (use "Char.sml");
-                                begin
-                                  (use "STRING-sig.sml");
-                                  begin
-                                    (use "String.sml");
-                                    begin
-                                      (use "SUBSTRING-sig.sml");
-                                      begin
-                                        (use "Substring.sml");
-                                        begin
-                                          (use "STRING_CVT-sig.sml");
-                                          begin
-                                            (use "StringCvt.sml");
-                                            begin
-                                              (use "INTEGER-sig.sml");
-                                              begin
-                                                (use "Int.sml");
-                                                begin
-                                                  (use "LargeInt.sml");
-                                                  begin
-                                                    (use "Position.sml");
-                                                    begin
-                                                      (use "WORD-sig.sml");
-                                                      begin
-                                                        (use "Word.sml");
-                                                        begin
-                                                          (use "Word8.sml");
-                                                          begin
-                                                            (use
-                                                            "LargeWord.sml");
-                                                            begin
-                                                              (use
-                                                              "IEEE_REAL-sig.sml");
-                                                              begin
-                                                                (use
-                                                                "IEEEReal.sml");
-                                                                begin
-                                                                  (use
-                                                                  "MATH-sig.sml");
-                                                                  begin
-                                                                    (use
-                                                                    "Math.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "REAL-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Real.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "LargeReal.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "TIME-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Time.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "VECTOR-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Vector.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "MONO_VECTOR-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Word8Vector.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "CharVector.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "VECTOR_SLICE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "VectorSlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "MONO_VECTOR_SLICE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Word8VectorSlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "CharVectorSlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "ARRAY-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Array.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "MONO_ARRAY-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Word8Array.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "CharArray.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "ARRAY_SLICE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "ArraySlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "MONO_ARRAY_SLICE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Word8ArraySlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "CharArraySlice.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "BYTE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Byte.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "TEXT-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "Text.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "IO-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "IO.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "STREAM_IO-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "IMPERATIVE_IO-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "TEXT_STREAM_IO-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "TEXT_IO-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "TextIO.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_FILE_SYS-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_PATH-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_PROCESS-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_Path.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_FileSys.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS_Process.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "OS.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "COMMAND_LINE-sig.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "CommandLine.sml");
-                                                                    begin
-                                                                    (use
-                                                                    "values.sml");
-                                                                    ()
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
-                                                                    end
+module Types = Types 
+module Infix = Infix
+module Exceptions = Exceptions
+module type GENERAL = GENERAL_sig.GENERAL
+module General = General
+module type OPTION = OPTION_sig.OPTION
+module Option = Option
+module type BOOL = BOOL_sig.BOOL
+module Bool = Bool
+module type LIST = LIST_sig.LIST
+module List = List
 
-                                                                  end
-                                                                
-                                                                end
-                                                              
-                                                              end
-                                                            
-                                                            end
-                                                          
-                                                          end
-                                                        
-                                                        end
-                                                      
-                                                      end
-                                                    
-                                                    end
-                                                  
-                                                  end
-                                                
-                                                end
-                                              
-                                              end
-                                            
-                                            end
-                                          
-                                          end
-                                        
-                                        end
-                                      
-                                      end
-                                    
-                                    end
-                                  
-                                  end
-                                
-                                end
-                              
-                              end
-                            
-                            end
-                          
-                          end
-                        
-                        end
-                      
-                      end
-                    
-                    end
-                  
-                  end
-                
-                end
-              
-              end
-            
-            end
-          
-          end
-        
-        end
-      
-      end
-    
-    end
-  [@sml.comment {|(*use \"PRIM_IO-sig.sml\";*)|}][@sml.comment
-                                                   {|(*use \"BinPrimIO.sml\";*)|}]
-  [@sml.comment {|(*use \"TextPrimIO.sml\";*)|}][@sml.comment
-                                                  {|(*use \"BIN_IO-sig.sml\";*)|}]
-  [@sml.comment {|(*use \"BinIO.sml\";*)|}][@sml.comment
-                                             {|(*use \"OS_IO-sig.sml\";*)|}]
-  [@sml.comment {|(*use \"OS_IO.sml\";*)|}][@sml.comment
-                                             {|(*use \"DATE-sig.sml\";*)|}]
-  [@sml.comment {|(*use \"Date.sml\";*)|}][@sml.comment
-                                            {|(*use \"TIMER-sig.sml\";*)|}]
-  [@sml.comment {|(*use \"Timer.sml\";*)|}];;
+module type LIST_PAIR = LIST_PAIR_sig.LIST_PAIR
+module ListPair = ListPair
+module type CHAR = CHAR_sig.CHAR
+module Char = Char
+module type STRING = STRING_sig.STRING
+module String = String
+module type SUBSTRING = SUBSTRING_sig.SUBSTRING
+module Substring = Substring
+module type STRING_CVT = STRING_CVT_sig.STRING_CVT
+module StringCvt = StringCvt
+module type INTEGER = INTEGER_sig.INTEGER
+module Int = Int
+module LargeInt = LargeInt
+module Position = Position
+module type WORD = WORD_sig.WORD
+module Word = Word
+module Word8 = Word8
+module LargeWord = LargeWord
+module type IEEE_REAL = IEEE_REAL_sig.IEEE_REAL
+module IEEEReal = IEEEReal
+module type MATH = MATH_sig.MATH
+module Math = Math
+module type REAL = REAL_sig.REAL
+module Real = Real
+module LargeReal = LargeReal
+module type TIME = TIME_sig.TIME
+module Time = Time
+module type VECTOR = VECTOR_sig.VECTOR
+module Vector = Vector
+module type MONO_VECTOR = MONO_VECTOR_sig.MONO_VECTOR
+module Word8Vector = Word8Vector
+module CharVector = CharVector
+module type VECTOR_SLICE = VECTOR_SLICE_sig.VECTOR_SLICE
+module VectorSlice = VectorSlice
+module type MONO_VECTOR_SLICE = MONO_VECTOR_SLICE_sig.MONO_VECTOR_SLICE
+module Word8VectorSlice = Word8VectorSlice
+module CharVectorSlice = CharVectorSlice
+module type ARRAY = ARRAY_sig.ARRAY
+module Array = Array
+module type MONO_ARRAY = MONO_ARRAY_sig.MONO_ARRAY
+module Word8Array = Word8Array
+module CharArray = CharArray
+module type ARRAY_SLICE = ARRAY_SLICE_sig.ARRAY_SLICE
+module ArraySlice = ArraySlice
+module type MONO_ARRAY_SLICE = MONO_ARRAY_SLICE_sig.MONO_ARRAY_SLICE
+module Word8ArraySlice = Word8ArraySlice
+module CharArraySlice = CharArraySlice
+module type BYTE = BYTE_sig.BYTE
+module Byte = Byte
+module type TEXT = TEXT_sig.TEXT
+module Text = Text.Text
+module type IO = IO_sig.IO
+module IO = IO
+module type STREAM_IO = STREAM_IO_sig.STREAM_IO
+module type IMPERATIVE_IO = IMPERATIVE_IO_sig.IMPERATIVE_IO
+module type TEXT_STREAM_IO = TEXT_STREAM_IO_sig.TEXT_STREAM_IO
+module type TEXT_IO = TEXT_IO_sig.TEXT_IO
+module TextIO = TextIO
+module type OS_FILE_SYS = OS_FILE_SYS_sig.OS_FILE_SYS
+module type OS_PATH = OS_PATH_sig.OS_PATH
+module type OS_PROCESS = OS_PROCESS_sig.OS_PROCESS
+module type OS = OS_sig.OS
+module OS = OS.OS
+module type COMMAND_LINE = COMMAND_LINE_sig.COMMAND_LINE
+module CommandLine = CommandLine
+module Values = Values
+[@@@sml.comment {|(*use "PRIM_IO-sig.sml";*)|}]
+[@@@sml.comment {|(*use "BinPrimIO.sml";*)|}]
+[@@@sml.comment {|(*use "TextPrimIO.sml";*)|}]
+[@@@sml.comment {|(*use "BIN_IO-sig.sml";*)|}]
+[@@@sml.comment {|(*use "BinIO.sml";*)|}]
+[@@@sml.comment {|(*use "OS_IO-sig.sml";*)|}]
+[@@@sml.comment {|(*use "OS_IO.sml";*)|}]
+[@@@sml.comment {|(*use "DATE-sig.sml";*)|}]
+[@@@sml.comment {|(*use "Date.sml";*)|}]
+[@@@sml.comment {|(*use "TIMER-sig.sml";*)|}]
+[@@@sml.comment {|(*use "Timer.sml";*)|}]

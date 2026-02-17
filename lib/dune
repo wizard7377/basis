@@ -1,0 +1,8 @@
+(library
+  (public_name basis)
+  (name basis)
+  (libraries sml_runtime ptime containers)
+  (flags (:standard -open Sml_pervasives -w -20-27-33-39))
+  (modules :standard)
+  (preprocess
+    (pps ppx_deriving.eq)))
