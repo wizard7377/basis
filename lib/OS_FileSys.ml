@@ -1,25 +1,26 @@
-(* 
+(*
  * (c) Andreas Rossberg 2001-2025
  *
  * Standard ML Basis Library
  *
  * Note: Incomplete.
-  *);;
-open General;;
+ *)
+open General
+
 module type OS_FILE_SYS = sig
-                          (* 
+  (* 
   type dirstream
   val openDir : string -> dirstream
   val readDir : dirstream -> string option
   val rewindDir : dirstream -> unit
   val closeDir : dirstream -> unit
  *)
-                          val chDir : string -> unit
-                          val getDir : unit -> string
-                          val mkDir : string -> unit
-                          val rmDir : string -> unit
-                          val isDir : string -> bool
-                          end;;
+  val chDir : string -> unit
+  val getDir : unit -> string
+  val mkDir : string -> unit
+  val rmDir : string -> unit
+  val isDir : string -> bool
+end
 (* 
   val isLink : string -> bool
   val readLink : string -> string
@@ -37,11 +38,11 @@ module type OS_FILE_SYS = sig
   val fileId : string -> file_id
   val hash : file_id -> word
   val compare : file_id * file_id -> order
- *);;
+ *)
 (* 
  * (c) Andreas Rossberg 2001-2025
  *
  * Standard ML Basis Library
  *
  * Note: Merged into OS.sml for OCaml compatibility.
-  *);;
+  *)

@@ -4,98 +4,80 @@
  * Standard ML Basis Library
  *
  * Notes:
- * _ We only implement required structures (and their open General 
+ * _ We only implement required structures (and their include General 
 signatures).
  * _ Modules commented out are not yet implemented.
-  *);;
-open Infix;;
-open Types;;
-open Exceptions;;
-open General;;
-open General;;
-open Option;;
-open Option;;
-open Bool;;
-open Bool;;
-open List;;
-open List;;
-open ListPair;;
-open ListPair;;
-open Char;;
-open Char;;
-open String;;
-open String;;
-open Substring;;
-open Substring;;
-open StringCvt;;
-open StringCvt;;
-open Int;;
-open Int;;
-open LargeInt;;
-open Position;;
-open Word;;
-open Word;;
-open Word8;;
-open LargeWord;;
-open IEEEReal;;
-open IEEEReal;;
-open Math;;
-open Math;;
-open Real;;
-open Real;;
-open LargeReal;;
-open Vector;;
-open Vector;;
-open MONO_VECTOR_sig;;
-open Word8Vector;;
-open CharVector;;
-open VectorSlice;;
-open VectorSlice;;
-open MONO_VECTOR_SLICE_sig;;
-open Word8VectorSlice;;
-open CharVectorSlice;;
-open Array;;
-open Array;;
-open MONO_ARRAY_sig;;
-open Word8Array;;
-open CharArray;;
-open ArraySlice;;
-open ArraySlice;;
-open MONO_ARRAY_SLICE_sig;;
-open Word8ArraySlice;;
-open CharArraySlice;;
-open Byte;;
-open Byte;;
-open Text;;
-open Text;;
-open IO;;
-open IO;;
-(* open PRIM_IO_sig; *);;
-(* open BinPrimIO; *);;
-(* open TextPrimIO; *);;
-open STREAM_IO_sig;;
-open IMPERATIVE_IO_sig;;
-open TEXT_STREAM_IO_sig;;
-open TextIO;;
-open TextIO;;
-(* open BIN_IO_sig; *);;
-(* open BinIO; *);;
-open OS_FileSys;;
-open OS_Path;;
-open OS_Process;;
-(* open OS_IO_sig; *);;
-open OS;;
-open OS_Path;;
-open OS_FileSys;;
-open OS_Process;;
-(* open OS_IO; *);;
-open OS;;
-open CommandLine;;
-open CommandLine;;
-(* open DATE_sig; *);;
-(* open Date; *);;
-(* open TIME_sig; *);;
-(* open Time; *);;
-(* open TIMER_sig; *);;
-(* open Timer; *);;
-open Values;;
+  *)
+include Infix
+include Types
+include Exceptions
+include General
+include Option
+include Bool
+include List
+include ListPair
+include Char
+include String
+include Substring
+include StringCvt
+include Int
+include LargeInt
+include Word
+include Word8
+include LargeWord
+include IEEEReal
+include Math
+include Real
+include LargeReal
+include Vector
+include MONO_VECTOR_sig
+include Word8Vector
+include CharVector
+include VectorSlice
+include MONO_VECTOR_SLICE_sig
+include Word8VectorSlice
+include CharVectorSlice
+include Array
+include MONO_ARRAY_sig
+include Word8Array
+include CharArray
+include ArraySlice
+include MONO_ARRAY_SLICE_sig
+include Word8ArraySlice
+include CharArraySlice
+include Byte
+include Text
+include IO
+
+(* include PRIM_IO_sig; *)
+(* include BinPrimIO; *)
+(* include TextPrimIO; *)
+include STREAM_IO_sig
+include IMPERATIVE_IO_sig
+include TEXT_STREAM_IO_sig
+include TextIO
+
+(* include BIN_IO_sig; *)
+(* include BinIO; *)
+include OS_FileSys
+include OS_Path
+include OS_Process
+
+(* include OS_IO_sig; *)
+include OS
+include OS_Path
+include OS_FileSys
+include OS_Process
+
+(* include OS_IO; *)
+include OS
+include CommandLine
+
+(* include DATE_sig; *)
+(* include Date; *)
+(* include TIME_sig; *)
+(* include Time; *)
+(* include TIMER_sig; *)
+(* include Timer; *)
+include Values
+include Toplevel

@@ -38,3 +38,4 @@ _opam/
 .claude
 *.ml-gen
 orig
+CLAUDE.md

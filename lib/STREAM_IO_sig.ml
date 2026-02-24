@@ -1,12 +1,16 @@
-(* 
+(*
  * (c) Andreas Rossberg 2001-2025
  *
  * Standard ML Basis Library
  *
  * Note: Incomplete.
-  *);;
-open General;;
-module type STREAM_IO = sig type nonrec elem type nonrec vector end;;
+ *)
+open General
+
+module type STREAM_IO = sig
+  type nonrec elem
+  type nonrec vector
+end
 (* 
   type instream
   type outstream
@@ -35,4 +39,4 @@ module type STREAM_IO = sig type nonrec elem type nonrec vector end;;
   val getPosOut : outstream -> out_pos
   val setPosOut : out_pos -> outstream
   val filePosOut : out_pos -> pos
- *);;
+ *)

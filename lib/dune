@@ -1,8 +1,9 @@
-(library 
+(library
  (name basis)
  (public_name basis)
- (flags (:standard  -w -A))
- (modules 
+ (flags
+  (:standard -w -A))
+ (modules
   Array
   ArraySlice
   Basis
@@ -55,4 +56,4 @@
   Word8ArraySlice
   Word8Vector
   Word8VectorSlice
- ))
+  Toplevel))

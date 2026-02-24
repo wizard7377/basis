@@ -1,7 +1,7 @@
-(* 
+(*
  * (c) Andreas Rossberg 2001-2025
  *
  * Standard ML Basis Library
-  *);;
-open General;;
-module LargeInt = Int;;
+ *)
+open General
+module LargeInt = Int

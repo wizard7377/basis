@@ -1,7 +1,7 @@
-(* 
+(*
  * (c) Andreas Rossberg 2001-2025
  *
  * Standard ML Basis Library
-  *);;
-open General;;
-module LargeWord = Word;;
+ *)
+open General
+module LargeWord = Word
