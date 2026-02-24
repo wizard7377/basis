@@ -3,6 +3,7 @@
  (public_name basis)
  (flags
   (:standard -w -A))
+ (libraries ptime)
  (modules
   Array
   ArraySlice
@@ -56,4 +57,10 @@
   Word8ArraySlice
   Word8Vector
   Word8VectorSlice
-  Toplevel))
+  Toplevel
+  Time 
+  Timer 
+  Date
+  PrimIO 
+  OS_IO
+  BinIO))

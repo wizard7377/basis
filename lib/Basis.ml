@@ -49,9 +49,7 @@ include Byte
 include Text
 include IO
 
-(* include PRIM_IO_sig; *)
-(* include BinPrimIO; *)
-(* include TextPrimIO; *)
+include PrimIO
 include STREAM_IO_sig
 include IMPERATIVE_IO_sig
 include TEXT_STREAM_IO_sig
@@ -68,16 +66,11 @@ include OS
 include OS_Path
 include OS_FileSys
 include OS_Process
-
-(* include OS_IO; *)
+include OS_IO
 include OS
 include CommandLine
-
-(* include DATE_sig; *)
-(* include Date; *)
-(* include TIME_sig; *)
-(* include Time; *)
-(* include TIMER_sig; *)
-(* include Timer; *)
+include Date 
+include Time 
+include Timer
 include Values
 include Toplevel
