@@ -1,5 +1,17 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2013-2025\n *\n * Standard ML Basis Library\n *)|}];;
-let name = ((use { b = "CommandLine.name"} ) : (unit -> string));;
-let arguments =
-  ((use { b = "CommandLine.arguments"} ) : (unit -> string list));;
+(* 
+ * (c) Andreas Rossberg 2013-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
+open Exceptions;;
+open COMMAND_LINE_sig;;
+module CommandLine : COMMAND_LINE =
+  struct
+    let name : unit -> string =
+      function 
+               | () -> raise ((General.Fail "TODO: CommandLine.name"));;
+    let arguments : unit -> string list =
+      function 
+               | () -> raise ((General.Fail "TODO: CommandLine.arguments"));;
+    end;;

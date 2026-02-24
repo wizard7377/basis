@@ -19,7 +19,9 @@
  (name basis)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml ppx_deriving bos ptime)
+ (depends 
+   (ocaml (>= 4.14)) 
+   ppx_deriving bos ptime)
  (tags
   ("add topics" "to describe" your project)))
 

@@ -1,67 +1,71 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2002-2025\n *\n * Standard ML Basis Library\n *)|}];;
+(* 
+ * (c) Andreas Rossberg 2002-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
 module type MONO_VECTOR_SLICE = sig
                                 type nonrec elem
                                 type nonrec vector
                                 type nonrec slice
-                                val length : (slice -> int)
-                                val sub : (slice * int -> elem)
-                                val full : (vector -> slice)
+                                val length : slice -> int
+                                val sub : (slice * int) -> elem
+                                val full : vector -> slice
                                 val
-                                  slice : (vector * int * int option -> slice)
+                                  slice : (vector * int * int option) ->
+                                          slice
                                 val
-                                  subslice : (slice * int * int option ->
-                                              slice)
-                                val base : (slice -> vector * int * int)
-                                val vector : (slice -> vector)
-                                val concat : (slice list -> vector)
-                                val isEmpty : (slice -> bool)
-                                val getItem : (slice -> elem * slice option)
+                                  subslice : (slice * int * int option) ->
+                                             slice
+                                val base : slice -> vector * int * int
+                                val vector : slice -> vector
+                                val concat : slice list -> vector
+                                val isEmpty : slice -> bool
+                                val getItem : slice -> (elem * slice) option
                                 val
-                                  appi : ((int * elem -> unit) ->
-                                          slice ->
-                                          unit)
-                                val app : ((elem -> unit) -> slice -> unit)
+                                  appi : ((int * elem) -> unit) ->
+                                         slice ->
+                                         unit
+                                val app : (elem -> unit) -> slice -> unit
                                 val
-                                  mapi : ((int * elem -> elem) ->
-                                          slice ->
-                                          vector)
-                                val map : ((elem -> elem) -> slice -> vector)
+                                  mapi : ((int * elem) -> elem) ->
+                                         slice ->
+                                         vector
+                                val map : (elem -> elem) -> slice -> vector
                                 val
-                                  foldli : ((int * elem * 'b -> 'b) ->
-                                            'b ->
-                                            slice ->
-                                            'b)
-                                val
-                                  foldri : ((int * elem * 'b -> 'b) ->
-                                            'b ->
-                                            slice ->
-                                            'b)
-                                val
-                                  foldl : ((elem * 'b -> 'b) ->
+                                  foldli : ((int * elem * 'b) -> 'b) ->
                                            'b ->
                                            slice ->
-                                           'b)
+                                           'b
                                 val
-                                  foldr : ((elem * 'b -> 'b) ->
+                                  foldri : ((int * elem * 'b) -> 'b) ->
                                            'b ->
                                            slice ->
-                                           'b)
+                                           'b
                                 val
-                                  findi : ((int * elem -> bool) ->
-                                           slice ->
-                                           int * elem
-                                           option)
-                                val
-                                  find : ((elem -> bool) ->
+                                  foldl : ((elem * 'b) -> 'b) ->
+                                          'b ->
                                           slice ->
-                                          elem
-                                          option)
+                                          'b
                                 val
-                                  exists : ((elem -> bool) -> slice -> bool)
-                                val all : ((elem -> bool) -> slice -> bool)
+                                  foldr : ((elem * 'b) -> 'b) ->
+                                          'b ->
+                                          slice ->
+                                          'b
                                 val
-                                  collate : ((elem * elem -> order) ->
-                                             slice * slice ->
-                                             order)
+                                  findi : ((int * elem) -> bool) ->
+                                          slice ->
+                                          (int * elem)
+                                          option
+                                val
+                                  find : (elem -> bool) ->
+                                         slice ->
+                                         elem
+                                         option
+                                val exists : (elem -> bool) -> slice -> bool
+                                val all : (elem -> bool) -> slice -> bool
+                                val
+                                  collate : ((elem * elem) -> order) ->
+                                            (slice * slice) ->
+                                            order
                                 end;;

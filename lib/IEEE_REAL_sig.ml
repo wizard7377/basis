@@ -1,5 +1,11 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *\n * Note: Incomplete.\n *)|}];;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+ *
+ * Note: Incomplete.
+  *);;
+open General;;
 module type IEEE_REAL = sig
                         exception Unordered 
                         type real_order =
@@ -19,5 +25,16 @@ module type IEEE_REAL = sig
                           | To_posinf 
                           | To_zero 
                         end;;
-[@@@sml.comment
-  {|(*\n  val setRoundingMode : rounding_mode -> unit\n  val getRoundingMode : unit -> rounding_mode\n  type decimal_approx = {\n                          class : float_class,\n                          sign : bool,\n                          digits : int list,\n                          exp : int\n                        }\n  val toString : decimal_approx -> string\n  val scan : (char, 'a) StringCvt.reader -> (decimal_approx, 'a) StringCvt.reader\n  val fromString : string -> decimal_approx option\n*)|}];;
+(* 
+  val setRoundingMode : rounding_mode -> unit
+  val getRoundingMode : unit -> rounding_mode
+  type decimal_approx = {
+                          class : float_class,
+                          sign : bool,
+                          digits : int list,
+                          exp : int
+                        }
+  val toString : decimal_approx -> string
+  val scan : (char, 'a) StringCvt.reader -> (decimal_approx, 'a) StringCvt.reader
+  val fromString : string -> decimal_approx option
+ *);;

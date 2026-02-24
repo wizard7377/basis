@@ -1,3 +1,10 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *\n * Note: Kept transparent to avoid overloading complications.\n *)|}];;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+ *
+ * Note: Kept transparent to avoid overloading complications.
+  *);;
+open General;;
+open INTEGER_sig;;
 module Position = Int;;

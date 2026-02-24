@@ -1,58 +1,62 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
 module type LIST_PAIR = sig
                         exception UnequalLengths 
-                        val zip : ('a list * 'b list -> 'a * 'b list)
-                        val zipEq : ('a list * 'b list -> 'a * 'b list)
-                        val unzip : ('a * 'b list -> 'a list * 'b list)
+                        val zip : ('a list * 'b list) -> ('a * 'b) list
+                        val zipEq : ('a list * 'b list) -> ('a * 'b) list
+                        val unzip : ('a * 'b) list -> 'a list * 'b list
                         val
-                          app : (('a * 'b -> unit) ->
-                                 'a list * 'b list ->
-                                 unit)
+                          app : (('a * 'b) -> unit) ->
+                                ('a list * 'b list) ->
+                                unit
                         val
-                          appEq : (('a * 'b -> unit) ->
-                                   'a list * 'b list ->
-                                   unit)
+                          appEq : (('a * 'b) -> unit) ->
+                                  ('a list * 'b list) ->
+                                  unit
                         val
-                          map : (('a * 'b -> 'c) ->
-                                 'a list * 'b list ->
-                                 'c
-                                 list)
+                          map : (('a * 'b) -> 'c) ->
+                                ('a list * 'b list) ->
+                                'c
+                                list
                         val
-                          mapEq : (('a * 'b -> 'c) ->
-                                   'a list * 'b list ->
-                                   'c
-                                   list)
+                          mapEq : (('a * 'b) -> 'c) ->
+                                  ('a list * 'b list) ->
+                                  'c
+                                  list
                         val
-                          foldl : (('a * 'b * 'c -> 'c) ->
-                                   'c ->
-                                   'a list * 'b list ->
-                                   'c)
+                          foldl : (('a * 'b * 'c) -> 'c) ->
+                                  'c ->
+                                  ('a list * 'b list) ->
+                                  'c
                         val
-                          foldr : (('a * 'b * 'c -> 'c) ->
-                                   'c ->
-                                   'a list * 'b list ->
-                                   'c)
+                          foldr : (('a * 'b * 'c) -> 'c) ->
+                                  'c ->
+                                  ('a list * 'b list) ->
+                                  'c
                         val
-                          foldlEq : (('a * 'b * 'c -> 'c) ->
-                                     'c ->
-                                     'a list * 'b list ->
-                                     'c)
+                          foldlEq : (('a * 'b * 'c) -> 'c) ->
+                                    'c ->
+                                    ('a list * 'b list) ->
+                                    'c
                         val
-                          foldrEq : (('a * 'b * 'c -> 'c) ->
-                                     'c ->
-                                     'a list * 'b list ->
-                                     'c)
+                          foldrEq : (('a * 'b * 'c) -> 'c) ->
+                                    'c ->
+                                    ('a list * 'b list) ->
+                                    'c
                         val
-                          all : (('a * 'b -> bool) ->
-                                 'a list * 'b list ->
-                                 bool)
+                          all : (('a * 'b) -> bool) ->
+                                ('a list * 'b list) ->
+                                bool
                         val
-                          exists : (('a * 'b -> bool) ->
-                                    'a list * 'b list ->
-                                    bool)
+                          exists : (('a * 'b) -> bool) ->
+                                   ('a list * 'b list) ->
+                                   bool
                         val
-                          allEq : (('a * 'b -> bool) ->
-                                   'a list * 'b list ->
-                                   bool)
+                          allEq : (('a * 'b) -> bool) ->
+                                  ('a list * 'b list) ->
+                                  bool
                         end;;

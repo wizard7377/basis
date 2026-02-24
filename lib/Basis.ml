@@ -1,0 +1,101 @@
+(* 
+ * (c) Andreas Rossberg 2001_2025
+ *
+ * Standard ML Basis Library
+ *
+ * Notes:
+ * _ We only implement required structures (and their open General 
+signatures).
+ * _ Modules commented out are not yet implemented.
+  *);;
+open Infix;;
+open Types;;
+open Exceptions;;
+open GENERAL_sig;;
+open General;;
+open OPTION_sig;;
+open Option;;
+open BOOL_sig;;
+open Bool;;
+open LIST_sig;;
+open List;;
+open LIST_PAIR_sig;;
+open ListPair;;
+open CHAR_sig;;
+open Char;;
+open STRING_sig;;
+open String;;
+open SUBSTRING_sig;;
+open Substring;;
+open STRING_CVT_sig;;
+open StringCvt;;
+open INTEGER_sig;;
+open Int;;
+open LargeInt;;
+open Position;;
+open WORD_sig;;
+open Word;;
+open Word8;;
+open LargeWord;;
+open IEEE_REAL_sig;;
+open IEEEReal;;
+open MATH_sig;;
+open Math;;
+open REAL_sig;;
+open Real;;
+open LargeReal;;
+open VECTOR_sig;;
+open Vector;;
+open MONO_VECTOR_sig;;
+open Word8Vector;;
+open CharVector;;
+open VECTOR_SLICE_sig;;
+open VectorSlice;;
+open MONO_VECTOR_SLICE_sig;;
+open Word8VectorSlice;;
+open CharVectorSlice;;
+open ARRAY_sig;;
+open Array;;
+open MONO_ARRAY_sig;;
+open Word8Array;;
+open CharArray;;
+open ARRAY_SLICE_sig;;
+open ArraySlice;;
+open MONO_ARRAY_SLICE_sig;;
+open Word8ArraySlice;;
+open CharArraySlice;;
+open BYTE_sig;;
+open Byte;;
+open TEXT_sig;;
+open Text;;
+open IO_sig;;
+open IO;;
+(* open PRIM_IO_sig; *);;
+(* open BinPrimIO; *);;
+(* open TextPrimIO; *);;
+open STREAM_IO_sig;;
+open IMPERATIVE_IO_sig;;
+open TEXT_STREAM_IO_sig;;
+open TEXT_IO_sig;;
+open TextIO;;
+(* open BIN_IO_sig; *);;
+(* open BinIO; *);;
+open OS_FILE_SYS_sig;;
+open OS_PATH_sig;;
+open OS_PROCESS_sig;;
+(* open OS_IO_sig; *);;
+open OS_sig;;
+open OS_Path;;
+open OS_FileSys;;
+open OS_Process;;
+(* open OS_IO; *);;
+open OS;;
+open COMMAND_LINE_sig;;
+open CommandLine;;
+(* open DATE_sig; *);;
+(* open Date; *);;
+(* open TIME_sig; *);;
+(* open Time; *);;
+(* open TIMER_sig; *);;
+(* open Timer; *);;
+open Values;;

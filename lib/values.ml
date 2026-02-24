@@ -1,16 +1,23 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library top-level values\n *\n * Note: Overloaded values are all primitive.\n *)|}];;
-let ( <> ) a1 a2 = (Bool.not ((a1 = a2)));;
+open! List;;
+open! Option;;
+open! Vector;;
+open! TextIO;;
+open! Bool;;
+open! Char;;
+open! String;;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library top-level values
+ *
+ * Note: Overloaded values are all primitive.
+  *);;
 open General;;
+open Exceptions;;
 let getOpt = Option.getOpt;;
 let isSome = Option.isSome;;
 let valOf = Option.valOf;;
 let not = Bool.not;;
-let real = Real.fromInt;;
-let trunc = Real.trunc;;
-let floor = Real.floor;;
-let ceil = Real.ceil;;
-let round = Real.round;;
 let ord = Char.ord;;
 let chr = Char.chr;;
 let size = String.size;;
@@ -19,17 +26,15 @@ let concat = String.concat;;
 let implode = String.implode;;
 let explode = String.explode;;
 let substring = String.substring;;
-let ( ^ ) = String.( ^ );;
 let null = List.null;;
 let hd = List.hd;;
 let tl = List.tl;;
 let length = List.length;;
 let rev = List.rev;;
-let ( @ ) = List.( @ );;
 let app = List.app;;
 let map = List.map;;
 let foldr = List.foldr;;
 let foldl = List.foldl;;
 let print = TextIO.print;;
 let vector = Vector.fromList;;
-let use (_s : string) = ();;
+let rec use s = raise ((General.Fail "TODO"));;

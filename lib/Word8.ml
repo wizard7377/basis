@@ -1,41 +1,50 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *\n * Note:\n * - Dropped deprecated {from,to}LargeWord functions.\n *)|}];;
-type nonrec word = word;;
-let wordSize = 8;;
-let toLarge = ((use { b = "Word8.toLarge"} ) : (word -> Word.word));;
-let toLargeX = ((use { b = "Word8.toLargeX"} ) : (word -> Word.word));;
-let fromLarge = ((use { b = "Word8.fromLarge"} ) : (Word.word -> word));;
-let toInt = ((use { b = "Word8.toInt"} ) : (word -> Int.int));;
-let toIntX = ((use { b = "Word8.toIntX"} ) : (word -> Int.int));;
-let fromInt = ((use { b = "Word8.fromInt"} ) : (Int.int -> word));;
-let toLargeInt = toInt;;
-[@@@sml.comment {|(* hm, what if Int <> LargeInt? *)|}];;
-let toLargeIntX = toIntX;;
-let fromLargeInt = fromInt;;
-let notb = ((use { b = "Word8.notb"} ) : (word -> word));;
-let orb = ((use { b = "Word8.orb"} ) : (word * word -> word));;
-let xorb = ((use { b = "Word8.xorb"} ) : (word * word -> word));;
-let andb = ((use { b = "Word8.andb"} ) : (word * word -> word));;
-let ( << ) = ((use { b = "Word8.<<"} ) : (word * Word.word -> word));;
-let ( >> ) = ((use { b = "Word8.>>"} ) : (word * Word.word -> word));;
-let ( ~>> ) = ((use { b = "Word8.~>>"} ) : (word * Word.word -> word));;
-let div = (div : (word * word -> word));;
-let mod_ = (mod_ : (word * word -> word));;
-let rec ( ~- ) w = (notb ((w - 1)));;
-let rec compare (i, j) = begin
-  if (i < j) then LESS else begin if (i = j) then EQUAL else GREATER end
-  end;;
-let rec min (i, j) = begin if (i < j) then i else j end;;
-let rec max (i, j) = begin if (i > j) then i else j end;;
-let rec fmt radix i = (Word.fmt radix ((toLarge i)));;
-let rec scan radix getc src =
-  begin
-  match (Word.scan radix getc src)
-  with 
-       | None -> None
-       | (Some (w, src_prime)) -> begin
-           if (w > 0xff) then (raise Overflow) else
-           (Some ((fromLarge w), src_prime)) end
-  end;;
-let toString = (fmt StringCvt.Hex);;
-let fromString = (StringCvt.scanString ((scan StringCvt.Hex)));;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+ *
+ * Note:
+ * - Dropped deprecated {from,to}LargeWord functions.
+  *);;
+open General;;
+open Exceptions;;
+open WORD_sig;;
+module Word8 = struct
+                 type nonrec word = int;;
+                 let wordSize = 8;;
+                 let rec toLarge w = w;;
+                 let rec toLargeX w = w;;
+                 let rec fromLarge w = w;;
+                 let rec toInt w = w;;
+                 let rec toIntX w = w;;
+                 let rec fromInt w = w;;
+                 let rec toLargeInt w = w;;
+                 let rec toLargeIntX w = w;;
+                 let rec fromLargeInt w = w;;
+                 let rec notb w = raise ((General.Fail "TODO"));;
+                 let rec orb (a, b) = raise ((General.Fail "TODO"));;
+                 let rec xorb (a, b) = raise ((General.Fail "TODO"));;
+                 let rec andb (a, b) = raise ((General.Fail "TODO"));;
+                 let rec shl (a, b) = raise ((General.Fail "TODO"));;
+                 let rec shr (a, b) = raise ((General.Fail "TODO"));;
+                 let rec ashr (a, b) = raise ((General.Fail "TODO"));;
+                 let ( + ) x__op y__op = x__op + y__op;;
+                 let ( - ) x__op y__op = x__op - y__op;;
+                 let ( * ) x__op y__op = x__op * y__op;;
+                 let rec div (a, b) = raise ((General.Fail "TODO"));;
+                 let rec mod_ (a, b) = raise ((General.Fail "TODO"));;
+                 let rec negate w = raise ((General.Fail "TODO"));;
+                 let ( > ) x__op y__op = x__op > y__op;;
+                 let ( >= ) x__op y__op = x__op >= y__op;;
+                 let ( < ) x__op y__op = x__op < y__op;;
+                 let ( <= ) x__op y__op = x__op <= y__op;;
+                 let rec compare (i, j) = begin
+                   if i < j then Less else begin
+                   if i = j then Equal else Greater end end;;
+                 let rec min (i, j) = begin if i < j then i else j end;;
+                 let rec max (i, j) = begin if i > j then i else j end;;
+                 let rec fmt radix w = raise ((General.Fail "TODO"));;
+                 let rec toString w = raise ((General.Fail "TODO"));;
+                 let rec scan radix getc src = raise ((General.Fail "TODO"));;
+                 let rec fromString s = None;;
+                 end;;

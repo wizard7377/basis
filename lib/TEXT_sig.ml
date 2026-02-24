@@ -1,11 +1,22 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2002-2025\n *\n * Standard ML Basis Library\n *)|}];;
+(* 
+ * (c) Andreas Rossberg 2002-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
+open CHAR_sig;;
+open STRING_sig;;
+open SUBSTRING_sig;;
+open MONO_VECTOR_sig;;
+open MONO_ARRAY_sig;;
+open MONO_VECTOR_SLICE_sig;;
+open MONO_ARRAY_SLICE_sig;;
 module type TEXT = sig
-                   module Char : sig end
-                   module String : sig end
-                   module Substring : sig end
-                   module CharVector : sig end
-                   module CharArray : sig end
-                   module CharVectorSlice : sig end
-                   module CharArraySlice : sig end
+                   module Char : CHAR
+                   module String : STRING
+                   module Substring : SUBSTRING
+                   module CharVector : MONO_VECTOR
+                   module CharArray : MONO_ARRAY
+                   module CharVectorSlice : MONO_VECTOR_SLICE
+                   module CharArraySlice : MONO_ARRAY_SLICE
                    end;;

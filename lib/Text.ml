@@ -1,14 +1,23 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2002-2025\n *\n * Standard ML Basis Library\n *)|}];;
-module Text =
-  struct
-    module Char = Char;;
-    module String = String;;
-    module Substring = Substring;;
-    module CharVector = CharVector;;
-    module CharArray = CharArray;;
-    module CharVectorSlice = CharVectorSlice;;
-    module CharArraySlice = CharArraySlice;;
-    end;;
-[@@@sml.comment
-  {|(* redundant and illegal\n  where type String.string = String.string\n  where type Substring.substring = Substring.substring\n*)|}];;
+(* 
+ * (c) Andreas Rossberg 2002-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
+open TEXT_sig;;
+module Text = struct
+                open General;;
+                module Char = Char;;
+                open General;;
+                module String = String;;
+                open General;;
+                module Substring = Substring;;
+                open General;;
+                module CharVector = CharVector;;
+                open General;;
+                module CharArray = CharArray;;
+                open General;;
+                module CharVectorSlice = CharVectorSlice;;
+                open General;;
+                module CharArraySlice = CharArraySlice;;
+                end;;

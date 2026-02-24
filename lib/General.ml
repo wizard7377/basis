@@ -1,32 +1,34 @@
-[@@@sml.comment
-  {|(*\n * (c) Andreas Rossberg 2001-2025\n *\n * Standard ML Basis Library\n *)|}];;
-type nonrec unit = unit;;
-type int = Int.int ;;
-type nonrec exn = exn;;
-type word = Word.word ;;
-type real = Real.real ;;
-type char = Char.char ;;
-type string = String.string ;;
-type substring = Substring.substring ;;
-type 'a array = 'a Array.array ;;
-type 'a vector = 'a Vector.vector ;;
-type nonrec 'a option = 'a Option.option ;;
-type nonrec 'a list = 'a List.list;;
-exception Bind = Bind;;
-exception Chr = Chr;;
-exception Div = Div;;
-exception Domain = Domain;;
-exception Fail = Fail;;
-exception Match = Match;;
-exception Overflow = Overflow;;
-exception Size = Size;;
-exception Span = Span;;
-exception Subscript = Subscript;;
-let exnName = ((use { b = "General.exnName"} ) : (exn -> string));;
-let exnMessage = exnName;;
-type nonrec order = order;;
-let ( ! ) { contents = v } = v;;
-let ( := ) = ( := );;
-let o f g a = (f ((g a)));;
-let before (a, _b) = a;;
-let ignore _a = ();;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open GENERAL_sig;;
+module General = struct
+                   type nonrec unit = unit;;
+                   type nonrec exn = exn;;
+                   exception Bind ;;
+                   exception Chr ;;
+                   exception Div ;;
+                   exception Domain ;;
+                   exception Fail of string ;;
+                   exception Match ;;
+                   exception Overflow ;;
+                   exception Size ;;
+                   exception Span ;;
+                   exception Subscript ;;
+                   let rec exnName e = raise ((Fail "TODO"));;
+                   let exnMessage = exnName;;
+                   type order = | Less 
+                                | Equal 
+                                | Greater ;;
+                   let rec ( ! ) { contents = v} = v;;
+                   let ( := ) x__op y__op = x__op := y__op;;
+                   let rec o (f, g) a = f (g a);;
+                   let rec before (a, b) = a;;
+                   let rec ignore a = ();;
+                   end;;
+open General;;
+type order = | Less 
+             | Equal 
+             | Greater ;;
