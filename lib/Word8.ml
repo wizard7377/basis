@@ -8,7 +8,7 @@
   *);;
 open General;;
 open Exceptions;;
-open WORD_sig;;
+open Word;;
 module Word8 = struct
                  type nonrec word = int;;
                  let wordSize = 8;;

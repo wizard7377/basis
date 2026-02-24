@@ -4,9 +4,33 @@
  * Standard ML Basis Library
   *);;
 open General;;
+module type MATH = sig
+                   type nonrec real
+                   val pi : real
+                   val e : real
+                   val sqrt : real -> real
+                   val sin : real -> real
+                   val cos : real -> real
+                   val tan : real -> real
+                   val asin : real -> real
+                   val acos : real -> real
+                   val atan : real -> real
+                   val atan2 : (real * real) -> real
+                   val exp : real -> real
+                   val pow : (real * real) -> real
+                   val ln : real -> real
+                   val log10 : real -> real
+                   val sinh : real -> real
+                   val cosh : real -> real
+                   val tanh : real -> real
+                   end;;
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+  *);;
 open Exceptions;;
 open Types;;
-open MATH_sig;;
 module Math = struct
                 type nonrec real = real;;
                 let e : real = raise ((General.Fail "TODO: Math.e"));;

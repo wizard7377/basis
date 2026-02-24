@@ -6,5 +6,5 @@
  * Note: Kept transparent to avoid overloading complications.
   *);;
 open General;;
-open INTEGER_sig;;
+open Int;;
 module Position = Int;;

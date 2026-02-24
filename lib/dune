@@ -4,79 +4,52 @@
  (flags (:standard  -w -A))
  (modules 
   Array
-  ARRAY_sig
   ArraySlice
-  ARRAY_SLICE_sig
   Basis
   Bool
-  BOOL_sig
   Byte
-  BYTE_sig
   Char
-  CHAR_sig
   CharArray
   CharArraySlice
   CharVector
   CharVectorSlice
   CommandLine
-  COMMAND_LINE_sig
   exceptions
   General
-  GENERAL_sig
   IEEEReal
-  IEEE_REAL_sig
   IMPERATIVE_IO_sig
   infix
   Int
-  INTEGER_sig
   IO
-  IO_sig
   LargeInt
   LargeReal
   LargeWord
   List
-  LIST_sig
   ListPair
-  LIST_PAIR_sig
   Math
-  MATH_sig
   MONO_ARRAY_sig
   MONO_ARRAY_SLICE_sig
   MONO_VECTOR_sig
   MONO_VECTOR_SLICE_sig
   Option
-  OPTION_sig
   OS
-  OS_sig
   OS_FileSys
-  OS_FILE_SYS_sig
   OS_Path
-  OS_PATH_sig
   OS_Process
-  OS_PROCESS_sig
   Position
   Real
-  REAL_sig
   STREAM_IO_sig
   String
-  STRING_sig
   StringCvt
-  STRING_CVT_sig
   Substring
-  SUBSTRING_sig
   Text
-  TEXT_sig
   TextIO
-  TEXT_IO_sig
   TEXT_STREAM_IO_sig
   types
   values
   Vector
-  VECTOR_sig
   VectorSlice
-  VECTOR_SLICE_sig
   Word
-  WORD_sig
   Word8
   Word8Array
   Word8ArraySlice

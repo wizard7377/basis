@@ -1,3 +1,26 @@
+module Sig_BOOL = struct
+(* 
+ * (c) Andreas Rossberg 2001-2025
+ *
+ * Standard ML Basis Library
+  *);;
+open General;;
+module StringCvt = struct
+                     type nonrec ('a, 'b) reader = 'b -> ('a * 'b) option;;
+                     end;;
+open General;;
+module type BOOL = sig
+                   type nonrec bool = bool
+                   val not : bool -> bool
+                   val
+                     scan : ((char, 'a) StringCvt.reader) ->
+                            (bool, 'a)
+                            StringCvt.reader
+                   val fromString : string -> bool option
+                   val toString : bool -> string
+                   end;;
+end;;
+module type BOOL = Sig_BOOL.BOOL;;
 (* 
  * (c) Andreas Rossberg 2001-2025
  *
@@ -5,7 +28,6 @@
   *);;
 open General;;
 open Exceptions;;
-open BOOL_sig;;
 module Bool = struct
                 type nonrec bool = bool;;
                 let rec not = function 
