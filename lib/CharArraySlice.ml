@@ -23,5 +23,17 @@ module CharArraySlice = struct
   let rec vector sl =
     CharVector.tabulate (length sl, function i -> sub (sl, i))
 
-  let rec copyVec x = raise (Fail "TODO")
+  let rec copyVec x =
+    let src : vector_slice = Obj.magic (Obj.field (Obj.repr x) 0) in
+    let dst : array = Obj.magic (Obj.field (Obj.repr x) 1) in
+    let di : int = Obj.magic (Obj.field (Obj.repr x) 2) in
+    let src_len = Substring.Substring.size src in
+    begin if di < 0 || Stdlib.Array.length dst < di + src_len
+    then raise Subscript
+    else copyVec_prime (src, dst, di, 0, src_len)
+    end
+  and copyVec_prime (src, dst, di, i, len) =
+    begin if i = len then ()
+    else begin Stdlib.Array.set dst (di + i) (Substring.Substring.sub (src, i)); copyVec_prime (src, dst, di, i + 1, len) end
+    end
 end

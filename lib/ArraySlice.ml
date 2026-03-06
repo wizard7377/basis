@@ -156,6 +156,32 @@ module ArraySlice = struct
       end
     end
 
-  let rec copy x = raise (Fail "TODO")
-  let rec copyVec x = raise (Fail "TODO")
+  let rec copy x =
+    let src : 'a slice = Obj.magic x.src in
+    let dst : 'a Array.array = Obj.magic x.dst in
+    let di = x.di in
+    let (_, src_start, _) = base src in
+    begin if di < 0 || Array.length dst < di + length src
+    then raise Subscript
+    else begin if src_start > di
+    then copy_prime (src, dst, di, 0, length src, 1)
+    else copy_prime (src, dst, di, length src - 1, -1, -1)
+    end end
+  and copy_prime (src, dst, di, i, to_, by) =
+    begin if i = to_ then ()
+    else begin Array.update (dst, di + i, sub (src, i)); copy_prime (src, dst, di, i + by, to_, by) end
+    end
+
+  let rec copyVec x =
+    let src = Obj.magic x.src in
+    let dst : 'a Array.array = Obj.magic x.dst in
+    let di = x.di in
+    begin if di < 0 || Array.length dst < di + VectorSlice.length src
+    then raise Subscript
+    else copyVec_prime (src, dst, di, 0)
+    end
+  and copyVec_prime (src, dst, di, i) =
+    begin if i = VectorSlice.length src then ()
+    else begin Array.update (dst, di + i, VectorSlice.sub (src, i)); copyVec_prime (src, dst, di, i + 1) end
+    end
 end

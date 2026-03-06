@@ -83,8 +83,9 @@ module StringCvt = struct
   let rec skipWS f s =
     dropl (function c -> c = ' ' || c = 't' || c = '\n' || c = 'r') f s
 
-  let rec scanString f s = raise (General.Fail "TODO")
+  let rec scanString f s =
+    begin match f (reader s) 0 with None -> None | Some (a, _) -> Some a end
 
-  let rec reader s i =
+  and reader s i =
     try Some (String.sub (s, i), i + 1) with Subscript -> None
 end

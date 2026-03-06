@@ -50,7 +50,7 @@ module General = struct
   exception Span
   exception Subscript
 
-  let rec exnName e = raise (Fail "TODO")
+  let rec exnName e = Printexc.to_string e
   let exnMessage = exnName
 
   type order = Less | Equal | Greater

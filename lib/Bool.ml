@@ -36,10 +36,10 @@ module Bool = struct
   type nonrec bool = bool
 
   let rec not = function true -> false | false -> true
-  let rec string_sub (s, i) = (raise (General.Fail "TODO") : char)
-  let rec string_size s = raise (General.Fail "TODO")
-  let rec ord c = raise (General.Fail "TODO")
-  let rec chr i = raise (General.Fail "TODO")
+  let rec string_sub (s, i) = try Stdlib.String.get s i with Invalid_argument _ -> raise Subscript
+  let rec string_size s = Stdlib.String.length s
+  let rec ord c = Stdlib.Char.code c
+  let rec chr i = try Stdlib.Char.chr i with Invalid_argument _ -> raise Chr
   let rec char_isSpace c = ('t' <= c && c <= 'r') || c <= ' '
   let rec char_isUpper c = 'A' <= c && c <= 'Z'
 

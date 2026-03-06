@@ -19,8 +19,8 @@ open Exceptions
 
 module CommandLine : COMMAND_LINE = struct
   let name : unit -> string = function
-    | () -> raise (General.Fail "TODO: CommandLine.name")
+    | () -> Stdlib.Array.get Sys.argv 0
 
   let arguments : unit -> string list = function
-    | () -> raise (General.Fail "TODO: CommandLine.arguments")
+    | () -> Stdlib.List.tl (Stdlib.Array.to_list Sys.argv)
 end

@@ -39,4 +39,4 @@ let foldr = List.foldr
 let foldl = List.foldl
 let print = TextIO.print
 let vector = Vector.fromList
-let rec use s = raise (General.Fail "TODO")
+let rec use s = raise (General.Fail "use: not available in OCaml translation")

@@ -10,10 +10,10 @@ open General
 open Exceptions
 open Word
 
-module Word8 = struct
+module Word32 = struct
   type nonrec word = int
 
-  let wordSize = 8
+  let wordSize = 32
   let rec toLarge w = w
   let rec toLargeX w = w
   let rec fromLarge w = w

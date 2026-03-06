@@ -16,5 +16,5 @@ type nonrec exn = exn
 type nonrec 'a ref = 'a ref
 type nonrec bool = bool
 type nonrec 'a list = 'a list
-type 'a option = None | Some of 'a
+type nonrec 'a option = 'a option = None | Some of 'a
 type order = Less | Equal | Greater

@@ -20,7 +20,9 @@ module CharVector = struct
   let sub = String.sub
   let concat = String.concat
   let collate = String.collate
-  let rec fromList l = raise (General.Fail "TODO")
+  let rec fromList l =
+    let len = Stdlib.List.length l in
+    Stdlib.String.init len (fun i -> Stdlib.List.nth l i)
   let rec tabulate (n, f) = fromList (List.tabulate (n, f))
 
   let rec update (vec, i, x) =

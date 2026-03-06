@@ -21,11 +21,18 @@ end
  * Standard ML Basis Library
  *)
 module Byte = struct
-  let rec byteToChar i = raise (General.Fail "TODO")
-  let rec charToByte c = raise (General.Fail "TODO")
-  let rec stringToBytes s = raise (General.Fail "TODO")
-  let rec bytesToString v = raise (General.Fail "TODO")
-  let rec unpackStringVec sl = raise (General.Fail "TODO")
-  let rec unpackString sl = raise (General.Fail "TODO")
-  let rec packString x = raise (General.Fail "TODO")
+  let rec byteToChar i = Stdlib.Char.chr i
+  let rec charToByte c = Stdlib.Char.code c
+  let rec stringToBytes s =
+    Stdlib.Array.init (Stdlib.String.length s) (fun i -> Stdlib.Char.code (Stdlib.String.get s i))
+  let rec bytesToString v =
+    Stdlib.String.init (Stdlib.Array.length v) (fun i -> Stdlib.Char.chr (Stdlib.Array.get v i))
+  let rec unpackStringVec sl = bytesToString sl
+  let rec unpackString sl = bytesToString sl
+  let rec packString (arr, i, ss) =
+    let s = ss in
+    let len = Stdlib.String.length s in
+    for j = 0 to len - 1 do
+      Stdlib.Array.set arr (i + j) (Stdlib.Char.code (Stdlib.String.get s j))
+    done
 end

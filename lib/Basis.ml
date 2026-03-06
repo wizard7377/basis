@@ -74,3 +74,6 @@ include Time
 include Timer
 include Values
 include Toplevel
+include Widechar
+include IntInf 
+include Word32

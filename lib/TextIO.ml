@@ -88,28 +88,36 @@ module TextIO = struct
 
   type nonrec vector = StreamIO.vector
   type nonrec elem = StreamIO.elem
-  type nonrec instream = int
-  type nonrec outstream = int
+  type nonrec instream = Stdlib.in_channel
+  type nonrec outstream = Stdlib.out_channel
 
-  let rec stdIn () = raise (Fail "TODO")
-  let rec stdOut () = raise (Fail "TODO")
-  let rec stdErr () = raise (Fail "TODO")
-  let rec openIn s = raise (Fail "TODO")
-  let rec openOut s = raise (Fail "TODO")
-  let rec openAppend s = raise (Fail "TODO")
-  let rec closeIn s = raise (Fail "TODO")
-  let rec closeOut s = raise (Fail "TODO")
-  let rec input s = raise (Fail "TODO")
-  let rec input1 s = raise (Fail "TODO")
-  let rec inputN (s, n) = raise (Fail "TODO")
-  let rec inputAll s = raise (Fail "TODO")
-  let rec inputLine s = raise (Fail "TODO")
-  let rec endOfStream s = raise (Fail "TODO")
-  let rec output (os, v) = raise (Fail "TODO")
-  let rec output1 (os, e) = raise (Fail "TODO")
-  let rec flushOut os = raise (Fail "TODO")
-  let rec print s = raise (Fail "TODO")
-  let rec outputSubstr (os, ss) = raise (Fail "TODO")
+  let stdIn = Stdlib.stdin
+  let stdOut = Stdlib.stdout
+  let stdErr = Stdlib.stderr
+  let rec openIn s = Stdlib.open_in s
+  let rec openOut s = Stdlib.open_out s
+  let rec openAppend s = Stdlib.open_out_gen [Open_wronly; Open_append; Open_creat] 0o666 s
+  let rec closeIn s = Stdlib.close_in s
+  let rec closeOut s = Stdlib.close_out s
+  let rec input s = Stdlib.In_channel.input_all s
+  let rec input1 s = try Some (Stdlib.input_char s) with End_of_file -> None
+  let rec inputN (s, n) =
+    begin match Stdlib.In_channel.really_input_string s n with
+    | Some str -> str
+    | None -> Stdlib.In_channel.input_all s
+    end
+  let rec inputAll s = Stdlib.In_channel.input_all s
+  let rec inputLine s = try Some (Stdlib.input_line s ^ "\n") with End_of_file -> None
+  let rec endOfStream s =
+    begin match input1 s with
+    | None -> true
+    | Some c -> Stdlib.seek_in s (Stdlib.pos_in s - 1); false
+    end
+  let rec output (os, v) = Stdlib.output_string os v
+  let rec output1 (os, e) = Stdlib.output_char os e
+  let rec flushOut os = Stdlib.flush os
+  let rec print s = output (stdOut, s); flushOut stdOut
+  let rec outputSubstr (os, ss) = output (os, Substring.string ss)
 end
 (* 
   fun scanStream scanFn strm  =

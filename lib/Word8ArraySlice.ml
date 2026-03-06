@@ -14,5 +14,5 @@ module Word8ArraySlice = struct
   type nonrec vector = elem array
   type nonrec array = elem array
 
-  let rec copyVec x = raise (Fail "TODO")
+  let rec copyVec x = ArraySlice.copyVec (Obj.magic x)
 end

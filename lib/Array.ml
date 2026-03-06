@@ -102,8 +102,33 @@ module Array : ARRAY = struct
       end
     end
 
-  let rec copy x = raise (Fail "TODO")
-  let rec copyVec x = raise (Fail "TODO")
+  let copy (x : _ __0) =
+    let src : _ array = Obj.magic x.src in
+    let dst : _ array = Obj.magic x.dst in
+    let di = x.di in
+    let rec go i =
+      begin if i = length src then ()
+      else begin update (dst, di + i, sub (src, i)); go (i + 1) end
+      end
+    in
+    begin if di < 0 || length dst < di + length src
+    then raise Subscript
+    else go 0
+    end
+
+  let copyVec (x : _ __1) =
+    let src = x.src in
+    let dst : _ array = Obj.magic x.dst in
+    let di = x.di in
+    let rec go i =
+      begin if i = Vector.length src then ()
+      else begin update (dst, di + i, Vector.sub (src, i)); go (i + 1) end
+      end
+    in
+    begin if di < 0 || length dst < di + Vector.length src
+    then raise Subscript
+    else go 0
+    end
 end
 
 type nonrec 'a array = 'a Array.array

@@ -42,10 +42,10 @@ open! Bool
 module Vector = struct
   type nonrec 'a vector = 'a array
 
-  let maxLen : int = 0
-  let rec length x = raise (General.Fail "TODO")
-  let rec sub x = raise (General.Fail "TODO")
-  let rec fromList x = raise (General.Fail "TODO")
+  let maxLen : int = Stdlib.Sys.max_array_length
+  let rec length x = Stdlib.Array.length x
+  let rec sub (vec, i) = try Stdlib.Array.get vec i with Invalid_argument _ -> raise General.Subscript
+  let rec fromList x = Stdlib.Array.of_list x
   let rec tabulate (n, f) = fromList (List.tabulate (n, f))
 
   let rec update (vec, i, x) =
