@@ -3,8 +3,9 @@
  (public_name basis)
  (flags
   (:standard -w -A))
- (libraries ptime)
+ (libraries ptime containers bos)
  (modules
+  :standard
   Array
   ArraySlice
   Basis
@@ -58,9 +59,9 @@
   Word8Vector
   Word8VectorSlice
   Toplevel
-  Time 
-  Timer 
+  Time
+  Timer
   Date
-  PrimIO 
+  PrimIO
   OS_IO
   BinIO))

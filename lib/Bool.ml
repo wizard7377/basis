@@ -36,7 +36,10 @@ module Bool = struct
   type nonrec bool = bool
 
   let rec not = function true -> false | false -> true
-  let rec string_sub (s, i) = try Stdlib.String.get s i with Invalid_argument _ -> raise Subscript
+
+  let rec string_sub (s, i) =
+    try Stdlib.String.get s i with Invalid_argument _ -> raise Subscript
+
   let rec string_size s = Stdlib.String.length s
   let rec ord c = Stdlib.Char.code c
   let rec chr i = try Stdlib.Char.chr i with Invalid_argument _ -> raise Chr

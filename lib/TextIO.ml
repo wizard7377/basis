@@ -96,27 +96,42 @@ module TextIO = struct
   let stdErr = Stdlib.stderr
   let rec openIn s = Stdlib.open_in s
   let rec openOut s = Stdlib.open_out s
-  let rec openAppend s = Stdlib.open_out_gen [Open_wronly; Open_append; Open_creat] 0o666 s
+
+  let rec openAppend s =
+    Stdlib.open_out_gen [ Open_wronly; Open_append; Open_creat ] 0o666 s
+
   let rec closeIn s = Stdlib.close_in s
   let rec closeOut s = Stdlib.close_out s
   let rec input s = Stdlib.In_channel.input_all s
   let rec input1 s = try Some (Stdlib.input_char s) with End_of_file -> None
+
   let rec inputN (s, n) =
     begin match Stdlib.In_channel.really_input_string s n with
     | Some str -> str
     | None -> Stdlib.In_channel.input_all s
     end
+
   let rec inputAll s = Stdlib.In_channel.input_all s
-  let rec inputLine s = try Some (Stdlib.input_line s ^ "\n") with End_of_file -> None
+
+  let rec inputLine s =
+    try Some (Stdlib.input_line s ^ "\n") with End_of_file -> None
+
   let rec endOfStream s =
     begin match input1 s with
     | None -> true
-    | Some c -> Stdlib.seek_in s (Stdlib.pos_in s - 1); false
+    | Some c ->
+        Stdlib.seek_in s (Stdlib.pos_in s - 1);
+        false
     end
+
   let rec output (os, v) = Stdlib.output_string os v
   let rec output1 (os, e) = Stdlib.output_char os e
   let rec flushOut os = Stdlib.flush os
-  let rec print s = output (stdOut, s); flushOut stdOut
+
+  let rec print s =
+    output (stdOut, s);
+    flushOut stdOut
+
   let rec outputSubstr (os, ss) = output (os, Substring.string ss)
 end
 (* 

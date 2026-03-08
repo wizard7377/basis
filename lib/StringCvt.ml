@@ -84,8 +84,8 @@ module StringCvt = struct
     dropl (function c -> c = ' ' || c = 't' || c = '\n' || c = 'r') f s
 
   let rec scanString f s =
-    begin match f (reader s) 0 with None -> None | Some (a, _) -> Some a end
+    begin match f (reader s) 0 with None -> None | Some (a, _) -> Some a
+    end
 
-  and reader s i =
-    try Some (String.sub (s, i), i + 1) with Subscript -> None
+  and reader s i = try Some (String.sub (s, i), i + 1) with Subscript -> None
 end

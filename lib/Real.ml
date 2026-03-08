@@ -139,15 +139,20 @@ module Real = struct
   let rec floor x = Stdlib.Float.to_int (Stdlib.floor x)
   let rec ceil x = Stdlib.Float.to_int (Stdlib.ceil x)
   let rec trunc x = Stdlib.Float.to_int x
+
   let rec round x =
     let f = Stdlib.Float.round x in
     let diff = x -. f in
     begin if diff = 0.5 || diff = -0.5 then
       let fi = Stdlib.Float.to_int f in
-      begin if fi mod 2 <> 0 then
-        begin if diff > 0.0 then fi - 1 else fi + 1 end
-      else fi end
-    else Stdlib.Float.to_int f end
+      begin if fi mod 2 <> 0 then begin
+        if diff > 0.0 then fi - 1 else fi + 1
+      end
+      else fi
+      end
+    else Stdlib.Float.to_int f
+    end
+
   let rec toInt mode x =
     begin match mode with
     | IEEEReal.To_neginf -> floor x
@@ -155,6 +160,7 @@ module Real = struct
     | IEEEReal.To_zero -> trunc x
     | IEEEReal.To_nearest -> round x
     end
+
   let rec toLargeInt mode x = toInt mode x
   let rec fromLargeInt i = fromInt i
   let rec abs x = Stdlib.Float.abs x
@@ -175,10 +181,13 @@ module Real = struct
 
   let rec compareReal (i, j) =
     begin if i < j then IEEEReal.Less
-    else begin if eq (i, j) then IEEEReal.Equal
-    else begin if i > j then IEEEReal.Greater
-    else IEEEReal.Unordered
-    end end end
+    else begin
+      if eq (i, j) then IEEEReal.Equal
+      else begin
+        if i > j then IEEEReal.Greater else IEEEReal.Unordered
+      end
+    end
+    end
 
   let rec compare (i, j) =
     begin match compareReal (i, j) with
@@ -191,10 +200,14 @@ module Real = struct
   let rec isFinite x = Stdlib.Float.is_finite x
   let rec isNan x = Stdlib.Float.is_nan x
   let rec signBit x = Stdlib.Float.copy_sign 1.0 x < 0.0
+
   let rec checkFloat x =
     begin if isNan x then raise Div
-    else begin if not (isFinite x) then raise Overflow else x end
+    else begin
+      if not (isFinite x) then raise Overflow else x
     end
+    end
+
   let rec copySign (x, y) = Stdlib.Float.copy_sign x y
   let rec unordered (x, y) = isNan x || isNan y
   let rec sameSign (x, y) = signBit x = signBit y
@@ -230,99 +243,109 @@ module Real = struct
 
   and scanTextual ss getc src =
     begin if Substring.Substring.size ss = 0 then Some src
-    else bindOpt (getc src) (fun (c, src') ->
-      begin if Char.Char.toLower c = Substring.Substring.sub (ss, 0)
-      then scanTextual (Substring.Substring.triml 1 ss) getc src'
-      else None
-      end
-    )
+    else
+      bindOpt (getc src) (fun (c, src') ->
+          begin if Char.Char.toLower c = Substring.Substring.sub (ss, 0) then
+            scanTextual (Substring.Substring.triml 1 ss) getc src'
+          else None
+          end)
     end
 
   and scanFractional getc src =
     bindOpt (getc src) (fun (c, _) ->
-      begin if Char.Char.isDigit c
-      then scanFractional_prime 0.0 0.1 getc src
-      else None
-      end
-    )
+        begin if Char.Char.isDigit c then scanFractional_prime 0.0 0.1 getc src
+        else None
+        end)
+
   and scanFractional_prime r d getc src =
     begin match getc src with
-    | Some (c, src') ->
-      begin if Char.Char.isDigit c
-      then scanFractional_prime (r +. d *. value c) (d /. 10.0) getc src'
-      else Some (r, src)
+    | Some (c, src') -> begin
+        if Char.Char.isDigit c then
+          scanFractional_prime (r +. (d *. value c)) (d /. 10.0) getc src'
+        else Some (r, src)
       end
     | None -> Some (r, src)
     end
 
   and scanMantissa getc src =
     bindOpt (getc src) (fun (c, src') ->
-      begin if c = '.' then
-        bindOpt (scanFractional getc src') (fun (r, src'') -> Some (r, src''))
-      else begin if Char.Char.isDigit c then Some (scanMantissa_prime 0.0 getc src)
-      else None
-      end end
-    )
+        begin if c = '.' then
+          bindOpt (scanFractional getc src') (fun (r, src'') -> Some (r, src''))
+        else begin
+          if Char.Char.isDigit c then Some (scanMantissa_prime 0.0 getc src)
+          else None
+        end
+        end)
+
   and scanMantissa_prime r getc src =
     begin match getc src with
-    | Some ('.', src') ->
-      begin match scanFractional getc src' with
-      | Some (r', src'') -> (r +. r', src'')
-      | None -> (r, src)
+    | Some ('.', src') -> begin
+        match scanFractional getc src' with
+        | Some (r', src'') -> (r +. r', src'')
+        | None -> (r, src)
       end
-    | Some (c, src') ->
-      begin if Char.Char.isDigit c
-      then scanMantissa_prime (10.0 *. r +. value c) getc src'
-      else (r, src)
+    | Some (c, src') -> begin
+        if Char.Char.isDigit c then
+          scanMantissa_prime ((10.0 *. r) +. value c) getc src'
+        else (r, src)
       end
     | None -> (r, src)
     end
 
   and scanExp getc src =
     bindOpt (getc src) (fun (c, src') ->
-      begin if c = 'e' || c = 'E' then scanExp_prime getc src' else None end
-    )
+        begin if c = 'e' || c = 'E' then scanExp_prime getc src' else None
+        end)
+
   and scanExp_prime getc src =
     bindOpt (scanSign getc src) (fun (sign, src1) ->
-    bindOpt (getc src1) (fun (c, _) ->
-      begin if Char.Char.isDigit c
-      then bindOpt (scanExp_prime2 0.0 getc src1) (fun (r, src2) -> Some (sign *. r, src2))
-      else None
-      end
-    ))
+        bindOpt (getc src1) (fun (c, _) ->
+            begin if Char.Char.isDigit c then
+              bindOpt (scanExp_prime2 0.0 getc src1) (fun (r, src2) ->
+                  Some (sign *. r, src2))
+            else None
+            end))
+
   and scanExp_prime2 exp getc src =
     begin match getc src with
-    | Some (c, src') ->
-      begin if Char.Char.isDigit c
-      then scanExp_prime2 (10.0 *. exp +. value c) getc src'
-      else Some (exp, src)
+    | Some (c, src') -> begin
+        if Char.Char.isDigit c then
+          scanExp_prime2 ((10.0 *. exp) +. value c) getc src'
+        else Some (exp, src)
       end
     | None -> Some (exp, src)
     end
 
   and scan getc src =
-    bindOpt (scanSign getc (StringCvt.StringCvt.skipWS getc src)) (fun (sign, src1) ->
-      begin match scanTextual (Substring.Substring.full "infinity") getc src1 with
-      | Some src2 -> Some (sign *. posInf, src2)
-      | None ->
-      begin match scanTextual (Substring.Substring.full "inf") getc src1 with
-      | Some src2 -> Some (sign *. posInf, src2)
-      | None ->
-      begin match scanTextual (Substring.Substring.full "nan") getc src1 with
-      | Some src2 -> Some (0.0 *. posInf, src2)
-      | None ->
-      bindOpt (scanMantissa getc src1) (fun (man, src2) ->
-        begin match scanExp getc src2 with
-        | None -> Some (sign *. man, src2)
-        | Some (exp, src3) ->
-          Some (
-            (begin if eq (man, 0.0) then 0.0 else sign *. man *. Math.pow (10.0, exp) end),
-            src3
-          )
-        end
-      )
-      end end end
-    )
+    bindOpt
+      (scanSign getc (StringCvt.StringCvt.skipWS getc src))
+      (fun (sign, src1) ->
+        begin match
+          scanTextual (Substring.Substring.full "infinity") getc src1
+        with
+        | Some src2 -> Some (sign *. posInf, src2)
+        | None -> begin
+            match scanTextual (Substring.Substring.full "inf") getc src1 with
+            | Some src2 -> Some (sign *. posInf, src2)
+            | None -> begin
+                match
+                  scanTextual (Substring.Substring.full "nan") getc src1
+                with
+                | Some src2 -> Some (0.0 *. posInf, src2)
+                | None ->
+                    bindOpt (scanMantissa getc src1) (fun (man, src2) ->
+                        begin match scanExp getc src2 with
+                        | None -> Some (sign *. man, src2)
+                        | Some (exp, src3) ->
+                            Some
+                              ( begin if eq (man, 0.0) then 0.0
+                                else sign *. man *. Math.pow (10.0, exp)
+                                end,
+                                src3 )
+                        end)
+              end
+          end
+        end)
 
   let rec toString x = Stdlib.string_of_float x
   let rec fromString s = StringCvt.StringCvt.scanString scan s

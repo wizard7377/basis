@@ -59,5 +59,7 @@ module Word32 = struct
   let rec fmt radix w = Word.fmt radix (toLarge w)
   let rec toString w = fmt StringCvt.StringCvt.Hex w
   let rec scan radix getc src = Word.scan radix getc src
-  let rec fromString s = StringCvt.StringCvt.scanString (scan StringCvt.StringCvt.Hex) s
+
+  let rec fromString s =
+    StringCvt.StringCvt.scanString (scan StringCvt.StringCvt.Hex) s
 end

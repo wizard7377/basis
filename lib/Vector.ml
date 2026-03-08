@@ -44,7 +44,11 @@ module Vector = struct
 
   let maxLen : int = Stdlib.Sys.max_array_length
   let rec length x = Stdlib.Array.length x
-  let rec sub (vec, i) = try Stdlib.Array.get vec i with Invalid_argument _ -> raise General.Subscript
+
+  let rec sub (vec, i) =
+    try Stdlib.Array.get vec i
+    with Invalid_argument _ -> raise General.Subscript
+
   let rec fromList x = Stdlib.Array.of_list x
   let rec tabulate (n, f) = fromList (List.tabulate (n, f))
 

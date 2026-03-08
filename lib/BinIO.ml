@@ -3,7 +3,7 @@ open STREAM_IO_sig
 open Word8Vector
 open Word8Array
 open Word8
-open PrimIO 
+open PrimIO
 (*
 module type BIN_IO = sig
 include IMPERATIVE_IO

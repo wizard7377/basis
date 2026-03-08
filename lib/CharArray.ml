@@ -26,13 +26,19 @@ module CharArray = struct
     CharVector.tabulate (length arr, function i -> sub (arr, i))
 
   let rec copyVec x =
-    let src = Obj.magic x.src and dst = (Obj.magic x.dst : array) and di = x.di in
-    begin if di < 0 || length dst < di + CharVector.length src
-    then raise Subscript
+    let src = Obj.magic x.src
+    and dst = (Obj.magic x.dst : array)
+    and di = x.di in
+    begin if di < 0 || length dst < di + CharVector.length src then
+      raise Subscript
     else copyVec_prime (src, dst, di, 0)
     end
+
   and copyVec_prime (src, dst, di, i) =
     begin if i = CharVector.length src then ()
-    else begin Array.update (dst, di + i, CharVector.sub (src, i)); copyVec_prime (src, dst, di, i + 1) end
+    else begin
+      Array.update (dst, di + i, CharVector.sub (src, i));
+      copyVec_prime (src, dst, di, i + 1)
+    end
     end
 end

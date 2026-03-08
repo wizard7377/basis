@@ -63,7 +63,10 @@ module String = struct
 
   let maxSize : int = Stdlib.Sys.max_string_length
   let rec size s = Stdlib.String.length s
-  let rec sub (s, i) = try Stdlib.String.get s i with Invalid_argument _ -> raise Subscript
+
+  let rec sub (s, i) =
+    try Stdlib.String.get s i with Invalid_argument _ -> raise Subscript
+
   let rec str c = Stdlib.String.make 1 c
   let rec concat = function [] -> "" | s :: l -> s ^ concat l
 
@@ -165,9 +168,9 @@ module String = struct
 
   let rec scan getc src =
     bindOpt (scan_prime [] getc src) (fun (cs, src') ->
-    bindOpt (scanOptGap getc src') (fun src'' ->
-      Some (implode (List.rev cs), src'')
-    ))
+        bindOpt (scanOptGap getc src') (fun src'' ->
+            Some (implode (List.rev cs), src'')))
+
   and scan_prime cs getc src =
     begin match Char.scan getc src with
     | Some (c, src') -> scan_prime (c :: cs) getc src'
@@ -176,26 +179,31 @@ module String = struct
 
   and scanGap getc src =
     bindOpt (getc src) (fun (c, src') ->
-      begin if c = '\\' then Some src'
-      else begin if Char.isSpace c then scanGap getc src' else None end
-      end
-    )
+        begin if c = '\\' then Some src'
+        else begin
+          if Char.isSpace c then scanGap getc src' else None
+        end
+        end)
 
-  and scanOptGap getc src = Some (begin match scanOptGap_prime getc src with None -> src | Some s -> s end)
+  and scanOptGap getc src =
+    Some
+      begin match scanOptGap_prime getc src with None -> src | Some s -> s
+      end
+
   and scanOptGap_prime getc src =
     bindOpt (getc src) (fun (c1, src') ->
-    bindOpt (getc src') (fun (c2, src'') ->
-      begin if c1 = '\\' && Char.isSpace c2
-      then bindOpt (scanGap getc src'') (scanOptGap getc)
-      else None
-      end
-    ))
+        bindOpt (getc src') (fun (c2, src'') ->
+            begin if c1 = '\\' && Char.isSpace c2 then
+              bindOpt (scanGap getc src'') (scanOptGap getc)
+            else None
+            end))
 
   let rec scanString f s =
     begin match (f (reader s) 0 : ('a * int) option) with
     | None -> None
     | Some (r, _) -> Some r
     end
+
   and reader s i = try Some (sub (s, i), i + 1) with Subscript -> None
 
   let rec fromString s = scanString scan s

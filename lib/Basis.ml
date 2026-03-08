@@ -48,7 +48,6 @@ include CharArraySlice
 include Byte
 include Text
 include IO
-
 include PrimIO
 include STREAM_IO_sig
 include IMPERATIVE_IO_sig
@@ -69,11 +68,11 @@ include OS_Process
 include OS_IO
 include OS
 include CommandLine
-include Date 
-include Time 
+include Date
+include Time
 include Timer
 include Values
 include Toplevel
 include Widechar
-include IntInf 
+include IntInf
 include Word32

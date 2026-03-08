@@ -23,12 +23,18 @@ end
 module Byte = struct
   let rec byteToChar i = Stdlib.Char.chr i
   let rec charToByte c = Stdlib.Char.code c
+
   let rec stringToBytes s =
-    Stdlib.Array.init (Stdlib.String.length s) (fun i -> Stdlib.Char.code (Stdlib.String.get s i))
+    Stdlib.Array.init (Stdlib.String.length s) (fun i ->
+        Stdlib.Char.code (Stdlib.String.get s i))
+
   let rec bytesToString v =
-    Stdlib.String.init (Stdlib.Array.length v) (fun i -> Stdlib.Char.chr (Stdlib.Array.get v i))
+    Stdlib.String.init (Stdlib.Array.length v) (fun i ->
+        Stdlib.Char.chr (Stdlib.Array.get v i))
+
   let rec unpackStringVec sl = bytesToString sl
   let rec unpackString sl = bytesToString sl
+
   let rec packString (arr, i, ss) =
     let s = ss in
     let len = Stdlib.String.length s in

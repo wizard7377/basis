@@ -21,7 +21,7 @@
  (description "A longer description")
  (depends 
    (ocaml (>= 4.14)) 
-   ppx_deriving bos ptime)
+   ppx_deriving bos ptime containers)
  (tags
   ("add topics" "to describe" your project)))
 

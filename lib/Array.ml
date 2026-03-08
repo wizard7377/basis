@@ -108,11 +108,13 @@ module Array : ARRAY = struct
     let di = x.di in
     let rec go i =
       begin if i = length src then ()
-      else begin update (dst, di + i, sub (src, i)); go (i + 1) end
+      else begin
+        update (dst, di + i, sub (src, i));
+        go (i + 1)
+      end
       end
     in
-    begin if di < 0 || length dst < di + length src
-    then raise Subscript
+    begin if di < 0 || length dst < di + length src then raise Subscript
     else go 0
     end
 
@@ -122,11 +124,13 @@ module Array : ARRAY = struct
     let di = x.di in
     let rec go i =
       begin if i = Vector.length src then ()
-      else begin update (dst, di + i, Vector.sub (src, i)); go (i + 1) end
+      else begin
+        update (dst, di + i, Vector.sub (src, i));
+        go (i + 1)
+      end
       end
     in
-    begin if di < 0 || length dst < di + Vector.length src
-    then raise Subscript
+    begin if di < 0 || length dst < di + Vector.length src then raise Subscript
     else go 0
     end
 end

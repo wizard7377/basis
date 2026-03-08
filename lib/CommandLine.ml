@@ -18,8 +18,7 @@ end
 open Exceptions
 
 module CommandLine : COMMAND_LINE = struct
-  let name : unit -> string = function
-    | () -> Stdlib.Array.get Sys.argv 0
+  let name : unit -> string = function () -> Stdlib.Array.get Sys.argv 0
 
   let arguments : unit -> string list = function
     | () -> Stdlib.List.tl (Stdlib.Array.to_list Sys.argv)

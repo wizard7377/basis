@@ -45,6 +45,9 @@ let str : char -> string = String.str
 let substring : string * int * int -> string = String.substring
 let tl : 'a list -> 'a list = List.tl
 let trunc : Real.real -> int = Real.trunc
-let use : string -> unit = fun _ -> raise (Fail "use: not available in OCaml translation")
+
+let use : string -> unit =
+ fun _ -> raise (Fail "use: not available in OCaml translation")
+
 let valOf : 'a option -> 'a = Option.valOf
 let vector : 'a list -> 'a vector = Vector.fromList
