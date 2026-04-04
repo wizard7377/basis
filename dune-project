@@ -20,7 +20,7 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends 
-   (ocaml (>= 4.14)) 
+   ocaml 
    ppx_deriving bos ptime containers)
  (tags
   ("add topics" "to describe" your project)))

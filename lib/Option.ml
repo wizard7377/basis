@@ -12,7 +12,10 @@ module type OPTION = sig
 
   val getOpt : 'a option * 'a -> 'a
   val isSome : 'a option -> bool
+
   val valOf : 'a option -> 'a
+  (** @raise Option *)
+
   val filter : ('a -> bool) -> 'a -> 'a option
   val join : 'a option option -> 'a option
   val app : ('a -> unit) -> 'a option -> unit

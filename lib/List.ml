@@ -48,11 +48,13 @@ open Exceptions
 
 module List = struct
   exception Empty = Empty
-
-  let rec null = function [] -> true | _ -> false
-  let rec length = function [] -> 0 | x :: l' -> 1 + length l'
-  let rec hd = function x :: l' -> x | _ -> raise Empty
-  let rec tl = function x :: l' -> l' | _ -> raise Empty
+ 
+  let null = Stdlib.List.is_empty
+  let length = Stdlib.List.length
+  let hd l =
+    try Stdlib.List.hd l with _ -> raise Empty
+  let tl l =
+    try Stdlib.List.tl l with _ -> raise Empty
 
   let rec last = function
     | x :: [] -> x
@@ -61,35 +63,23 @@ module List = struct
 
   let rec getItem = function x :: l' -> Some (x, l') | [] -> None
 
-  let rec nth = function
-    | x :: l', 0 -> x
-    | x :: l', i -> nth (l', i - 1)
-    | [], i -> raise Subscript
+  let nth (l, n) =
+    try Stdlib.List.nth l n with _ -> raise Subscript
 
-  let rec rev l = rev' (l, [])
-  and rev' = function [], xs -> xs | x :: l', xs -> rev' (l', x :: xs)
+  let rev = Stdlib.List.rev
 
-  let rec append = function
-    | [], l2 -> l2
-    | x :: l1', l2 -> x :: append (l1', l2)
+  let append = Stdlib.List.append
 
-  let ( @ ) l1 l2 = append (l1, l2)
+  let ( @ ) l1 l2 = l1 @ l2
 
-  let rec revAppend = function
-    | [], l2 -> l2
-    | x :: l1', l2 -> revAppend (l1', x :: l2)
+  let rec revAppend = Stdlib.List.rev_append
+  let rec concat = Stdlib.List.concat
 
-  let rec concat = function [] -> [] | xs :: l' -> append (xs, concat l')
+  let take (l, i) =
+    try Stdlib.List.take i l with _ -> raise Subscript
 
-  let rec take = function
-    | l, 0 -> []
-    | x :: l', i -> x :: take (l', i - 1)
-    | [], i -> raise Subscript
-
-  let rec drop = function
-    | l, 0 -> l
-    | x :: l', i -> drop (l', i - 1)
-    | [], i -> raise Subscript
+  let drop (l, i) =
+    try Stdlib.List.drop i l with _ -> raise Subscript
 
   let rec app arg__0 arg__1 =
     begin match (arg__0, arg__1) with
